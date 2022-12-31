@@ -1,0 +1,34 @@
+<main>
+    <div class="form-menu ml-2 mt-4">
+        <div class="card pb-4">
+            <div class="card-header pt-3 pl-4 pb-3 ">Datos Etapa Identificar</div>
+            <div class="pl-4 pt-4 mb-4">
+                <label>Problema</label><br>
+                <input type="text" placeholder="Defina el problema">
+            </div>
+
+            <div class="pl-4 mb-4">
+                <label>¿Qué se debe mejorar?</label><br>
+
+                <div class="mb-4">
+                    <form [formGroup]="form">
+                        <div formArrayName="item">
+                            <div *ngFor="let item of getItems(form).controls; let
+                                i=index"
+                                [formGroupName]="i">
+                                <input class="mt-4"
+                                    type="text"
+                                    formControlName="name" placeholder="Defina y priorize qué se debe mejorar">
+                            </div>
+                        </div>
+                        <button class="btn btn-md btn-dark mt-4 mb-2"
+                            (click)="addItem(form)"><span
+                                class="glyphicon glyphicon-calendar">+</span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<app-save-data-btn></app-save-data-btn>

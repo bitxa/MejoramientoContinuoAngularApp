@@ -1,0 +1,19 @@
+<app-drop-image-box *ngIf="imageBoxVisible"></app-drop-image-box>
+<app-input-text *ngIf="causasTextVisible"></app-input-text>
+
+<form [formGroup]="inputTypeOpForm" class="inputTypeForm">
+    <input type="radio" value="oi"
+        name="op" formControlName="op" (change)="onChange()"
+        type="radio">
+    <label for="oi">Solo imagenes</label>
+    <br>
+    <input type="radio" value="ot"
+        name="op" formControlName="op"
+        (change)="onChange()" type="radio">
+    <label for="ot">Solo texto</label>
+    <br>
+    <input type="radio" value="it"
+        name="op" formControlName="op"
+        (change)="onChange()" type="radio">
+    <label for="it">Imagenes y texto</label>
+</form>

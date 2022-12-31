@@ -1,0 +1,82 @@
+<main>
+    <div class="form-menu ml-2 mt-4">
+        <div class="card pb-4">
+            <div class="card-header pt-3 pl-4 pb-3 ">Datos Etapa Desarollar</div>
+            <div class="pl-4 pt-4 mb-4">
+
+                <div class="mt-4">
+                    <label>Objetivo General</label><br>
+                    <textarea rows="6" cols="80" name="description"
+                        placeholder="Ingrese el Objetivo General"></textarea><br>
+                </div>
+
+                <div class="mt-4">
+                    <label>Objetivos Especificos.</label><br>
+                    <textarea rows="6" cols="80" name="description"
+                        placeholder="Ingrese los Objetivos Especificos
+                        Por cada nuevo objetivo digite / al inicio de la
+                        linea."></textarea><br>
+                </div>
+
+                <div class="mt-4">
+                    <label>¿Cómo sabremos que el cambio realizado produjo una
+                        mejora en el proceso? </label><br>
+
+                    <form [formGroup]="indicadorPorcentajeForm">
+                        <div formArrayName="item">
+                            <div *ngFor="let item of
+                                getItems(indicadorPorcentajeForm).controls; let
+                                i=index"
+                                [formGroupName]="i">
+                                <div class="ml-4 mt-4 container"
+                                    style="font-size:
+                                    1.7vh;">
+                                    <div class="indicador">
+                                        <label for="indicador"
+                                            style="font-size:1.7vh;">Indicador</label>
+                                        <input type="text"
+                                            formControlName="indicador">
+                                    </div>
+                                    <div class="porcentaje">
+                                        <label for="porcentaje"
+                                            style="font-size:1.7vh;">Porcentaje</label>
+                                        <input type="number" placeholder="%"
+                                            formControlName="porcentaje">
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <button class="btn btn-md btn-dark mt-4 mb-2 ml-4"
+                            (click)="addItem(indicadorPorcentajeForm)"><span
+                                class="glyphicon glyphicon-calendar">+</span></button>  
+                        </div>
+                    </form>
+                </div>
+
+                <div class="mt-4">
+                    <label>¿Cuáles son los cambios, las estrategias o las
+                        intervenciones que se quiere introducir en el proceso?</label><br>
+                    <form [formGroup]="cambiosForm" class="ml-4">
+                        <div formArrayName="item">
+                            <div *ngFor="let item of
+                                getItems(cambiosForm).controls; let
+                                i=index"
+                                [formGroupName]="i">
+                                <label for="indicador" style="font-size:1.7vh;"
+                                    class="mt-4">Indicador</label><br>
+                                <input type="text"
+                                    formControlName="indicador">
+
+                            </div>
+                            <button class="btn btn-md btn-dark mt-4 mb-2"
+                                (click)="addItem(cambiosForm)"><span
+                                    class="glyphicon glyphicon-calendar">+</span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<app-save-data-btn> </app-save-data-btn>

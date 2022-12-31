@@ -1,0 +1,32 @@
+<form [formGroup]="aspectosForm" class="aspectosForm">
+    <input type="radio" value="or"
+        name="op" formControlName="op" (change)="onChange()"
+        type="radio">
+    <label for="or">Organizacional</label>
+    <br>
+
+    <input type="radio" value="ad"
+        name="op" formControlName="op"
+        (change)="onChange()" type="radio">
+    <label for="ad">Administrativo</label>
+
+    <br>
+    <input type="radio" value="te"
+        name="op" formControlName="op"
+        (change)="onChange()" type="radio">
+    <label for="te">Técnico/Cientifico</label>
+    <br>
+    
+    <input type="radio" value="fi"
+        name="op" formControlName="op"
+        (change)="onChange()" type="radio">
+    <label for="fi">Financiero</label>
+    <br>
+
+    <input type="radio" value="ot"
+        name="op" formControlName="op"
+        (change)="onChange()" type="radio">
+    <label for="fi">Otro</label>
+    <input class="ml-2" type="text" height="3vh">
+    <br>
+</form>
