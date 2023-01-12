@@ -1,7 +1,0 @@
-<div [formGroup]="dimensionesForm" novalidate class="ml-4 pl-4">
-    <div *ngFor="let data of items; let i=index">
-        <input class="mr-4" type="checkbox" [value]="data.value"
-            (change)="onCheckboxChange($event)" />
-        <label class="ml-4">{{data.name}}</label>
-    </div>
-</div>
