@@ -8,28 +8,52 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class EtapaIdentificarComponent {
   form: FormGroup;
- 
-  constructor(private fb: FormBuilder) { 
+
+  constructor(private fb: FormBuilder) {
+
     this.form = this.fb.group({
-      item: new FormArray([
-        new FormGroup({
-          name: new FormControl('')
-        })
-      ])
+      problema: new FormControl(''),
+      mejoras: this.fb.array([])
     });
+
   }
   ngOnInit(): void {
-  
+
   }
 
-  getItems(form: FormGroup): FormArray {
-    return form.get('item') as FormArray;
+
+  get mejoras(): FormArray {
+    return this.form.get('mejoras') as FormArray;
   }
 
-  addItem(form: FormGroup): void {
-    this.getItems(form).push(new FormGroup({
-        name: new FormControl('')
-      })
+  addMejora(): void {
+    this.mejoras.push(new FormGroup({
+      name: new FormControl('')
+    })
     );
   }
+
+  getFormControlValue(control: string) {
+    return this.form.get(control)?.value;
+  }
+  saveData() {
+
+    let validatedMejoras = []
+
+    for (let mejora of this.mejoras.controls) {
+      let newMejora = mejora.get('name')?.value
+      if (newMejora !== '') {
+        validatedMejoras.push(mejora);
+      }
+    }
+
+    var data = {
+      "problema": this.getFormControlValue('problema'),
+      "mejoras": validatedMejoras
+    }
+  }
+
+
+
+
 }

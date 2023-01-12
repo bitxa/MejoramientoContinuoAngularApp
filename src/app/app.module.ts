@@ -26,6 +26,9 @@ import { AspectosMenuComponent } from './aspectos-menu/aspectos-menu.component';
 import { DimensionesMenuComponent } from './dimensiones-menu/dimensiones-menu.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { EtapaPlanificarComponent } from './etapa-planificar/etapa-planificar.component';
+import { EtapaEjecutarComponent } from './etapa-ejecutar/etapa-ejecutar.component';
+import { EtapaVerificarComponent } from './etapa-verificar/etapa-verificar.component';
+import { EtapaActuarComponent } from './etapa-actuar/etapa-actuar.component';
 
 
 
@@ -48,6 +51,9 @@ import { EtapaPlanificarComponent } from './etapa-planificar/etapa-planificar.co
     DimensionesMenuComponent,
     DatePickerComponent,
     EtapaPlanificarComponent,
+    EtapaEjecutarComponent,
+    EtapaVerificarComponent,
+    EtapaActuarComponent,
 
   ],
   imports: [

@@ -1,0 +1,67 @@
+html, main {
+    min-height: 40vh;
+    height: auto;
+}
+
+.card {
+    width: 99.5%;
+    height: auto;
+    border-radius: 2vh;
+    border-color: rgb(197, 197, 197);
+    border-width: 0.4vh;
+
+}
+
+.card .card-header {
+    font-size: 3.5vh;
+    font-weight: bolder;
+}
+
+
+select {
+    width: 50%;
+    height: 6vh;
+    border-radius: 1.4vh;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+div {
+    padding-left: 0vh;
+}
+
+
+input {
+    width: 50%;
+    height: 6vh;
+    border-radius: 1.4vh;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+
+div label {
+    font-size: 1.25em;
+    color: #41444B;
+}
+
+select {
+    background-color: #EAEAEA;
+    font-size: 1.1em;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.container  :first-child{
+    width: 80%;
+    padding-right: 0%;
+    margin-right: 0%
+}
+
+.container :first-child input{
+    width: 90%;
+}

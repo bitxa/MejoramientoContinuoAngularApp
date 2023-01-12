@@ -1,4 +1,4 @@
-<form [formGroup]="aspectosForm" class="aspectosForm">
+<form [formGroup]="form" class="aspectosForm">
     <input type="radio" value="or"
         name="op" formControlName="op" (change)="onChange()"
         type="radio">
@@ -26,7 +26,7 @@
     <input type="radio" value="ot"
         name="op" formControlName="op"
         (change)="onChange()" type="radio">
-    <label for="fi">Otro</label>
-    <input class="ml-2" type="text" height="3vh">
+    <label>Otro</label>
+    <input class="ml-2" type="text" height="3vh" formControlName="other_op_input" (mouseleave)="checkOtherOp()">
     <br>
 </form>

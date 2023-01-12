@@ -1,74 +1,77 @@
-<div class="mb-4">
-    <label for="establecimiento">Establecimiento de Salud</label><br>
-    <select class="establecimiento_selection" name="establecimientos"
-        id="establecimiento">
-        <option value="0">Hola</option>
-    </select>
-</div>
+<form [formGroup]="imcForm">
+    <div class="mb-4">
+        <label for="establecimiento">Establecimiento de Salud</label><br>
+        <select name="establecimiento"
+            id="establecimiento" formControlName="establecimiento">
+            <option value="0">Hola</option>
+        </select>
+    </div>
 
-<div class="mb-4">
-    <label for="tipologia">Tipología</label><br>
-    <select class="tipologia_selection" name="tipologia" id="tipologia">
-        <option value="0">Hola</option>
-    </select>
-</div>
+    <div class="mb-4">
+        <label for="tipologia">Tipología</label><br>
+        <select name="tipologia" id="tipologia"
+            formControlName="tipologia">
+            <option value="0">Hola</option>
+        </select>
+    </div>
 
-<div class="mb-4">
-    <label for="zona">Zona</label><br>
-    <select class="zona_selection" name="zona" id="zona">
-        <option value="0">Hola</option>
-    </select>
-</div>
+    <div class="mb-4">
+        <label for="zona">Zona</label><br>
+        <select name="zona" id="zona"
+            formControlName="zona">
+            <option value="0">Hola</option>
+        </select>
+    </div>
 
-<div class="mb-4">
-    <label for="provincia">Provincia</label><br>
-    <select class="provincia_selection" name="provincia" id="provincia">
-        <option value="0">Hola</option>
-    </select>
-</div>
+    <div class="mb-4">
+        <label for="provincia">Provincia</label><br>
+        <select name="provincia" id="provincia"
+            formControlName="provincia">
+            <option value="0">Hola</option>
+        </select>
+    </div>
 
-<div class="mb-4">
-    <label for="distrito">Distrito</label><br>
-    <input type="text" id="distrito">
-</div>
+    <div class="mb-4">
+        <label for="distrito">Distrito</label><br>
+        <input type="text" name="distrito" id="distrito" formControlName="distrito">
+    </div>
 
-<div class="mb-4">
-    <label for="zona">Servicio y Proceso de Atención</label><br>
-    <input type="text" id="servicio">
-</div>
+    <div class="mb-4">
+        <label for="servicio">Servicio y Proceso de Atención</label><br>
+        <input type="text" name="servicio" id="servicio" formControlName="servicio">
+    </div>
 
-<div class="mb-4">
-    <label for="zona">Responsable EMC</label><br>
-    <input type="text" id="zona">
-</div>
+    <div class="mb-4">
+        <label for="responsable">Responsable EMC</label><br>
+        <input type="text" name="responsable" id="responsable" formControlName="responsable">
+    </div>
 
-
-<div class="mb-4">
-    <label>Integrantes EMC</label><br>
-    <form [formGroup]="form">
-        <div formArrayName="member">
-            <div *ngFor="let member of members.controls; let i=index"
-                [formGroupName]="i">
-                <input class="mt-4" id="integrantes_input" type="text"
+    <div class="mb-4">
+        <label>Integrantes EMC</label><br>
+        <form formArrayName="integrantes">
+                <div *ngFor="let integrante of integrantes.controls; let
+                    i=index" [formGroupName]="i">
+                <input class="mt-4" type="text"
                     formControlName="name" placeholder="Integrante">
             </div>
-        </div>
-        <button class="btn btn-lg btn-dark mt-4 mb-2" (click)="addMember()"><span
+        </form>
+
+        <button class="btn btn-lg btn-dark mt-4 mb-2" (click)="addIntegrante()"><span
                 class="glyphicon glyphicon-calendar">+</span></button>
-    </form>
-</div>
+    </div>
 
-<div class="mb-4">
-    <label for="ciclo">Ciclo Nro</label><br>
-    <input type="text" id="ciclo" readonly value="0">
-</div>
+    <div class="mb-4">
+        <label for="ciclo">Ciclo Nro</label><br>
+        <input type="text" name="ciclo" id="ciclo" readonly formControlName="ciclo">
+    </div>
 
-<div class="mb-4">
-    <label for="ciclo">Fecha Inicio</label><br>
-    <app-date-picker></app-date-picker>
-</div>
+    <div class="mb-4">
+        <label for="inicio">Fecha Inicio</label><br>
+        <app-date-picker (dateSender)="receiveStartDate($event)"></app-date-picker>
+    </div>
 
-<div class="mb-4">
-    <label for="ciclo">Fecha de Finalización</label><br>
-    <app-date-picker class="ml-4"></app-date-picker>
-</div>
+    <div class="mb-4">
+        <label for="fin">Fecha de Finalización</label><br>
+        <app-date-picker (dateSender)="receiveEndDate($event)"></app-date-picker>
+    </div>
+</form>

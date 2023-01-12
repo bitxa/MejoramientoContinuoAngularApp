@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Platform } from '@angular/cdk/platform';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { DateAdapter, MAT_DATE_LOCALE, NativeDateAdapter } from '@angular/material/core';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
-
-const today = new Date();
-const month = today.getMonth();
-const year = today.getFullYear();
 
 @Component({
   selector: 'app-date-picker',
@@ -12,14 +11,33 @@ const year = today.getFullYear();
   styleUrls: ['./date-picker.component.css']
 })
 
-
-
 export class DatePickerComponent {
-  constructor(private fb: FormBuilder) { }
+  form: FormGroup;
+  date : Date = new Date();
+  today : string = this.date.getDate().toString()+ '/'+ 
+  (this.date.getMonth().valueOf() + 1).toString()
+  + '/' + this. date.getFullYear().toString();
 
-  selectedStartDate = new FormControl((new Date()).toISOString());
+  outputDate : string = "";
 
-  getDate() {
-      return this.selectedStartDate;
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      date: new FormControl(this.today)
+    });
   }
-} 
+
+  dateChangeHandler(date: Date) {
+    const stringDate: string = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    this.form.get('date')?.setValue(stringDate)
+    this.outputDate = stringDate;
+    this.sendDate();
+  }
+
+
+  @Output() dateSender = new EventEmitter<string>();
+  
+  sendDate() {
+    this.dateSender.emit(this.outputDate);
+  }
+}
+

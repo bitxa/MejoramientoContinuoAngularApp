@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -18,6 +18,8 @@ export class DimensionesMenuComponent {
   ];
 
   dimensionesForm: FormGroup;
+  @Output() dimensionesSender = new EventEmitter<string[]>();
+  selectedDimensiones : string[] = [];
 
   constructor(private fb: FormBuilder) {
     this.dimensionesForm = this.fb.group({
@@ -27,7 +29,7 @@ export class DimensionesMenuComponent {
 
   onCheckboxChange(event: any) {
     const checkArray: FormArray = this.dimensionesForm.get('checkArray') as FormArray;
-
+    
     if (event.target.checked) {
       checkArray.push(new FormControl(event.target.value));
     }else{
@@ -40,6 +42,15 @@ export class DimensionesMenuComponent {
         i++;
       });
     }
+
+    this.selectedDimensiones = checkArray.value;
+
+    this.sendDimensiones();
+
+  }
+
+  sendDimensiones(){
+    this.dimensionesSender.emit(this.selectedDimensiones)
   }
 }
 

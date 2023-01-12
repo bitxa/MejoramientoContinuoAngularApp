@@ -8,3 +8,11 @@
     border-radius: 1.4vh;
     padding-right: 2%;
 }
+
+input{
+    width: 50%;
+    height: 6vh;
+    border-radius: 1.4vh;
+    padding-left: 2%;
+    padding-right: 2%;
+}

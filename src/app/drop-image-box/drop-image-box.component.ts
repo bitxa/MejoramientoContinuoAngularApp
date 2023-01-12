@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-drop-image-box',
@@ -7,15 +7,21 @@ import { Component, Input } from '@angular/core';
 })
 
 export class DropImageBoxComponent {
+
   files: File[] = [];
+  @Output() filesSender = new EventEmitter<any[]>();
 
   onSelect(event: any) {
-    console.log(event);
     this.files.push(...event.addedFiles);
+    this.sendFiles();
   }
 
   onRemove(event: any) {
-    console.log(event);
     this.files = this.files.filter(file => file !== event)
   }
+
+  sendFiles(){
+    this.filesSender.emit(this.files);
+  }
 }
+    

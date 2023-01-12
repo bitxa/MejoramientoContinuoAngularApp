@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @Component({
@@ -9,37 +9,31 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 })
 
 export class EtapaAnalizarComponent {
-  files: File[] = [];
+  causasFiles: File[] = [];
+  efectosFiles : File[] = [];
+  aspecto : string = "";
+  dimensiones : string[] = [];
+
   causasTextVisible: Boolean = false;
   imagesBoxVisible: Boolean = false;
-
-  constructor(public fb: FormBuilder) { }
-
-
-  onSelect(event: any) {
-    console.log(event);
-    this.files.push(...event.addedFiles);
-  }
-
-  onRemove(event: any) {
-    console.log(event);
-    this.files = this.files.filter(file => file !== event)
-  }
+  form: FormGroup;  
 
 
 
-  inputTypeOpForm = this.fb.group({
-    op: ['']
-  })
+  constructor(public fb: FormBuilder) {
+    this.form = fb.group({
+      ambito : new FormControl(),
+      dimensiones : new FormControl(),
+    });
+   }
 
   get inputTypeOp() {
-    return this.inputTypeOpForm.get('op');
+    return this.form.get('op');
   }
-
 
   onChange() {
     //alert(JSON.stringify(this.inputTypeOpForm.value));
-    switch (this.inputTypeOpForm.value.op) {
+    switch (this.form.value.op) {
       case 'oi':
         this.causasTextVisible = false;
         this.imagesBoxVisible = true;
@@ -56,5 +50,30 @@ export class EtapaAnalizarComponent {
 
   }
 
+  receiveCausasFiles($event: any[]) {
+    this.causasFiles = $event;
+  }
+  receiveEfectosFiles($event: any[]) {
+    this.efectosFiles = $event;
+  }
+
+  receiveSelectedAspecto($event : string){
+    this.aspecto = $event;
+  }
+
+  receiveSelectedDimensiones($event : string[]){
+    this.dimensiones = $event;
+  }
+
+  save(){
+    var data = {
+      "causas" : this.causasFiles,
+      "efectos" : this.efectosFiles,
+      "aspecto" : this.aspecto,
+      "dimensiones" : this.dimensiones
+    }  
+
+    console.log(data);
+  }
 
 }

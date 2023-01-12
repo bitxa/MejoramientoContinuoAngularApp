@@ -1,0 +1,23 @@
+<main>
+    <div class="form-menu ml-2 mt-4">
+        <div class="card pb-4">
+            <div class="card-header pt-3 pl-4 pb-3 ">Datos Etapa Ejecutar</div>
+            <form class="pl-4 pt-4 mb-4" [formGroup]="form">
+                <div class="mt-4">
+                    <label>Observaciones, cambios, facilidades, dificultades</label><br>
+                    <textarea formControlName="observaciones" rows="6" cols="80" name="description"
+                        placeholder="Registrar las observaciones sobre la implementación de los cambios, que facilidades o dificultades se encontraron. Así mismo podrán describir que herramientas utilizaron."></textarea><br>
+                </div>
+
+                <div class="mt-4">
+                    <label>Evidencias</label><br>
+                    <textarea formControlName="evidencias" rows="6" cols="80" name="description"
+                        placeholder="En esta área se coloca las evidencias del resultado obtenido con el cambio."></textarea><br>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</main>
+
+<app-save-data-btn> </app-save-data-btn>    

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-aspectos-menu',
@@ -7,18 +7,48 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./aspectos-menu.component.css']
 })
 export class AspectosMenuComponent {
-  constructor(public fb: FormBuilder) { }
 
-  aspectosForm = this.fb.group({
-    op: ['']
-  })
+  form : FormGroup;
+  @Output() sender = new EventEmitter<string>();
+  
+  
+  selectedOp : string;
 
-  get inputTypeOp() {
-    return this.aspectosForm.get('op');
+  
+  constructor(public fb: FormBuilder) { 
+    this.form = this.fb.group({
+      op: [''],
+      other_op_input : new FormControl('')
+    })
+
+    this.selectedOp = "";
   }
 
+  get inputTypeOp() {
+    return this.form.get('op');
+  }
+
+  get otherInputType() {
+    return this.form.get('other_op_input');
+  }
 
   onChange() {
+    this.selectedOp = this.inputTypeOp?.value;
+    this.sendOp();
+  }
 
+  checkOtherOp(){
+    this.onChange();
+
+    if(this.selectedOp === 'ot'){
+      this.selectedOp = this.otherInputType?.value;
+    }
+
+    this.sendOp();
+  }
+
+  sendOp(){
+    this.sender.emit(this.selectedOp);
+    
   }
 }
